@@ -5,11 +5,9 @@ export default function News() {
   const [news, setNews] = useState([]);
   const [articalNum, setArticalNum] = useState(3);
   const [loading, setLoading] = useState(false);
-  useEffect(async () => {
+  useEffect(() => {
     setLoading(true);
-    await fetch(
-      `https://saurav.tech/NewsAPI/top-headlines/category/business/us.json`
-    )
+    fetch(`https://saurav.tech/NewsAPI/top-headlines/category/business/us.json`)
       .then((res) => res.json())
       .then((data) => setNews(data.articles));
     setLoading(false);
@@ -18,7 +16,7 @@ export default function News() {
     <div className="text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2">
       <h4 className="font-bold text-xl px-4">Whats happening</h4>
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-center">Loading...</p>
       ) : (
         <>
           {news.slice(0, articalNum).map((article) => (
